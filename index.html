@@ -2,124 +2,130 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Dashboard Facturas Proveedores</title>
 
-https://cdn.plot.ly/plotly-2.35.2.min.js
-
 <style>
+
+:root{
+--primary:#0F4C81;
+--secondary:#173F68;
+--success:#198754;
+--warning:#fd7e14;
+--danger:#dc3545;
+--bg:#f4f6fb;
+}
 
 *{
 margin:0;
 padding:0;
 box-sizing:border-box;
+font-family:'Segoe UI',sans-serif;
 }
 
 body{
-font-family:'Segoe UI',sans-serif;
-background:#f4f6fb;
+background:var(--bg);
 }
 
 .header{
-background:#0F4C81;
+background:var(--primary);
 color:white;
-padding:20px;
-font-size:32px;
-font-weight:700;
+padding:25px;
 text-align:center;
 }
 
-.sub{
-text-align:center;
-padding:8px;
-background:#173f68;
-color:white;
+.header h1{
+font-size:34px;
+}
+
+.header p{
+margin-top:5px;
+opacity:.9;
 }
 
 .filters{
+background:white;
+padding:15px;
 display:flex;
 gap:10px;
-padding:15px;
-background:white;
 flex-wrap:wrap;
-box-shadow:0 2px 5px rgba(0,0,0,.08);
+box-shadow:0 2px 6px rgba(0,0,0,.1);
 }
 
-select{
+.filters select{
 padding:10px;
 border-radius:8px;
 border:1px solid #ddd;
 }
 
 .kpis{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
-gap:15px;
 padding:15px;
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(190px,1fr));
+gap:15px;
 }
 
 .card{
 background:white;
+padding:18px;
 border-radius:12px;
-padding:15px;
-box-shadow:0 4px 12px rgba(0,0,0,.08);
-transition:.2s;
-}
-
-.card:hover{
-transform:translateY(-3px);
+box-shadow:0 2px 8px rgba(0,0,0,.08);
 }
 
 .card-title{
-font-size:13px;
 color:#666;
+font-size:13px;
 }
 
 .card-value{
 font-size:30px;
 font-weight:bold;
-color:#0F4C81;
+color:var(--primary);
 margin-top:10px;
 }
 
 .grid{
+padding:15px;
 display:grid;
 grid-template-columns:1fr 1fr;
 gap:15px;
-padding:15px;
 }
 
 .chart{
 background:white;
 border-radius:12px;
 padding:10px;
-box-shadow:0 4px 12px rgba(0,0,0,.08);
+box-shadow:0 2px 8px rgba(0,0,0,.08);
 }
 
-.analysis{
+.section{
+background:white;
 margin:15px;
 padding:20px;
-background:white;
 border-radius:12px;
-box-shadow:0 4px 12px rgba(0,0,0,.08);
+box-shadow:0 2px 8px rgba(0,0,0,.08);
 }
 
-.analysis h2{
+.section h2{
+margin-bottom:15px;
+color:var(--primary);
+}
+
+.alert{
+padding:12px;
+background:#fff3cd;
+border-left:4px solid #ffc107;
 margin-bottom:10px;
-}
-
-.analysis li{
-margin:8px 0;
+border-radius:6px;
 }
 
 table{
 width:100%;
 border-collapse:collapse;
-margin-top:10px;
 }
 
 th{
-background:#0F4C81;
+background:var(--primary);
 color:white;
 padding:10px;
 }
@@ -129,57 +135,37 @@ padding:10px;
 border-bottom:1px solid #eee;
 }
 
-@media(max-width:900px){
+@media(max-width:1000px){
 .grid{
 grid-template-columns:1fr;
 }
 }
-
 </style>
 </head>
 
 <body>
 
 <div class="header">
-Dashboard Recepción Facturas Proveedores
-</div>
-
-<div class="sub">
-Maqueta Ejecutiva - Estilo Power BI
+<h1>Dashboard Recepción Facturas Proveedores</h1>
+<p>Versión Ejecutiva BI</p>
 </div>
 
 <div class="filters">
-
 <select>
 <option>Estado Solicitud</option>
-<option>Completado</option>
-<option>Pendiente</option>
-<option>En Proceso</option>
-<option>Cancelado</option>
 </select>
 
 <select>
 <option>Proveedor</option>
-<option>AVIATUR</option>
-<option>ENEL</option>
-<option>MUNDO LOGYCA</option>
-<option>CENCOSUD</option>
 </select>
 
 <select>
 <option>Grupo Aprobador</option>
-<option>FT_ARREN</option>
-<option>FT_COMEX</option>
-<option>FT_NOMINA</option>
-<option>FT_TRANSP</option>
 </select>
 
 <select>
-<option>Contabilizado</option>
-<option>Sí</option>
-<option>No</option>
+<option>Fecha</option>
 </select>
-
 </div>
 
 <div class="kpis">
@@ -195,28 +181,28 @@ Maqueta Ejecutiva - Estilo Power BI
 </div>
 
 <div class="card">
-<div class="card-title">% Completadas</div>
+<div class="card-title">Completadas</div>
 <div class="card-value">82%</div>
 </div>
 
 <div class="card">
-<div class="card-title">% Pendientes</div>
+<div class="card-title">Pendientes</div>
 <div class="card-value">10%</div>
 </div>
 
 <div class="card">
-<div class="card-title">% Canceladas</div>
+<div class="card-title">Canceladas</div>
 <div class="card-value">8%</div>
+</div>
+
+<div class="card">
+<div class="card-title">Contabilizadas</div>
+<div class="card-value">91%</div>
 </div>
 
 <div class="card">
 <div class="card-title">Prom. Radicación</div>
 <div class="card-value">2.4</div>
-</div>
-
-<div class="card">
-<div class="card-title">Prom. Remisión</div>
-<div class="card-value">1.8</div>
 </div>
 
 <div class="card">
@@ -233,15 +219,23 @@ Maqueta Ejecutiva - Estilo Power BI
 </div>
 
 <div class="chart">
+<div id="tipos"></div>
+</div>
+
+<div class="chart">
 <div id="proveedores"></div>
 </div>
 
 <div class="chart">
-<div id="grupo"></div>
+<div id="grupos"></div>
 </div>
 
 <div class="chart">
 <div id="indicadores"></div>
+</div>
+
+<div class="chart">
+<div id="tendencia"></div>
 </div>
 
 <div class="chart">
@@ -254,29 +248,35 @@ Maqueta Ejecutiva - Estilo Power BI
 
 </div>
 
-<div class="analysis">
+<div class="section">
+
+<h2>Alertas Operativas</h2>
+
+<div class="alert">SIN REMISIONAR</div>
+<div class="alert">FACTURA DUPLICADA</div>
+<div class="alert">VALIDAR OC</div>
+<div class="alert">SIN OC</div>
+
+</div>
+
+<div class="section">
 
 <h2>Hallazgos Automáticos</h2>
 
 <ul>
 
-<li>✅ El estado Completado concentra la mayor parte del volumen.</li>
-
-<li>✅ AVIATUR, MUNDO LOGYCA y ENEL aparecen como proveedores destacados.</li>
-
-<li>✅ FT_ARREN y FT_COMEX son los grupos aprobadores con más actividad.</li>
-
-<li>⚠ Existen documentos SIN REMISIONAR que representan riesgo operativo.</li>
-
-<li>⚠ Se detectan casos asociados a facturas duplicadas y validaciones pendientes.</li>
-
-<li>⚠ Algunos registros presentan indicadores negativos de gestión que deben revisarse.</li>
+<li>Proveedor con mayor participación económica.</li>
+<li>Estados con mayor volumen.</li>
+<li>Facturas pendientes de contabilización.</li>
+<li>Indicadores con comportamiento atípico.</li>
+<li>Grupos aprobadores con mayor carga.</li>
+<li>Principales cuellos de botella.</li>
 
 </ul>
 
 </div>
 
-<div class="analysis">
+<div class="section">
 
 <h2>Detalle Operativo</h2>
 
@@ -301,7 +301,7 @@ Maqueta Ejecutiva - Estilo Power BI
 <tr>
 <td>ENEL</td>
 <td>Pendiente</td>
-<td>$18.200.000</td>
+<td>$18.700.000</td>
 <td>5</td>
 <td>7</td>
 </tr>
@@ -309,17 +309,9 @@ Maqueta Ejecutiva - Estilo Power BI
 <tr>
 <td>MUNDO LOGYCA</td>
 <td>Proceso</td>
-<td>$9.300.000</td>
+<td>$9.200.000</td>
 <td>3</td>
 <td>4</td>
-</tr>
-
-<tr>
-<td>CENCOSUD</td>
-<td>Completado</td>
-<td>$24.000.000</td>
-<td>1</td>
-<td>2</td>
 </tr>
 
 </table>
@@ -329,103 +321,75 @@ Maqueta Ejecutiva - Estilo Power BI
 <script>
 
 Plotly.newPlot('estado',[{
-type:'bar',
-x:['Completado','En Proceso','Pendiente','Cancelado'],
+x:['Completado','Proceso','Pendiente','Cancelado'],
 y:[2400,280,160,87],
-marker:{
-color:['#2ca02c','#ff7f0e','#1f77b4','#d62728']
-}
-}],
-{
+type:'bar'
+}],{
 title:'Estado Solicitud'
 });
 
-Plotly.newPlot('proveedores',[{
-labels:[
-'AVIATUR',
-'MUNDO LOGYCA',
-'ENEL',
-'CENCOSUD',
-'OTROS'
-],
-values:[18,15,12,10,45],
+Plotly.newPlot('tipos',[{
+labels:['FACTURA','NOTACRCXP','ANTICIPO'],
+values:[90,7,3],
 type:'pie',
 hole:.45
-}],
-{
-title:'Participación Proveedores'
+}],{
+title:'Tipo Documento'
 });
 
-Plotly.newPlot('grupo',[{
-x:[
-'FT_ARREN',
-'FT_COMEX',
-'FT_NOMINA',
-'FT_SSPPE',
-'FT_TRANSP'
-],
+Plotly.newPlot('proveedores',[{
+x:['AVIATUR','ENEL','MUNDO LOGYCA','CENCOSUD','OTROS'],
+y:[18,15,12,10,45],
+type:'bar'
+}],{
+title:'Top Proveedores'
+});
+
+Plotly.newPlot('grupos',[{
+x:['FT_ARREN','FT_COMEX','FT_NOMINA','FT_TRANSP','FT_SSPPE'],
 y:[25,18,15,10,8],
 type:'bar'
-}],
-{
+}],{
 title:'Grupo Aprobador'
 });
 
 Plotly.newPlot('indicadores',[{
-x:[
-'Radicación',
-'Remisión',
-'Entrega',
-'Registro'
-],
+x:['Radicación','Remisión','Entrega','Registro'],
 y:[2.4,1.8,2.7,3.1],
-mode:'lines+markers',
-type:'scatter'
-}],
-{
-title:'Promedio Indicadores (Días)'
+mode:'lines+markers'
+}],{
+title:'Promedio Indicadores'
+});
+
+Plotly.newPlot('tendencia',[{
+x:['S1','S2','S3','S4'],
+y:[520,680,710,850],
+type:'scatter',
+mode:'lines+markers'
+}],{
+title:'Tendencia Radicaciones'
 });
 
 Plotly.newPlot('treemap',[{
 type:'treemap',
-labels:[
-'AVIATUR',
-'ENEL',
-'MUNDO LOGYCA',
-'CENCOSUD',
-'OTROS'
-],
-parents:[
-'',
-'',
-'',
-'',
-''
-],
-values:[
-500,
-420,
-380,
-350,
-1000
-]
-}],
-{
+labels:['AVIATUR','ENEL','MUNDO LOGYCA','CENCOSUD','OTROS'],
+parents:['','','','',''],
+values:[500,420,380,300,1200]
+}],{
 title:'Participación Económica'
 });
 
 Plotly.newPlot('heatmap',[{
 z:[
-[8,6,3],
-[5,4,2],
-[9,8,4]
+[9,6,4],
+[6,8,7],
+[3,4,9]
 ],
 x:['Radicación','Remisión','Registro'],
 y:['FT_ARREN','FT_COMEX','FT_TRANSP'],
 type:'heatmap'
-}],
-{
-title:'Heatmap Cuellos de Botella'
+}],{
+title:'Mapa de Calor'
 });
 
 </script>
